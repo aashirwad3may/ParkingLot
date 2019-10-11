@@ -9,7 +9,7 @@ public interface parkingLotOperations {
 	
 	public void park_vehicle(parkingLotVehicle vehicle);
 	
-	public void leaveParkingLot(parkingLotVehicle vehicle);
+	public void leaveParkingLot(int slot);
 	
 
 }

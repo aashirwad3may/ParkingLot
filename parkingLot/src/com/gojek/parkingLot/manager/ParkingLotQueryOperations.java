@@ -6,10 +6,12 @@ public interface ParkingLotQueryOperations {
 	
 	public void parkingLot_status();
 	
-	public List<String> regnum_cars_with_color(String color);
+	public int getavalaibleslot();
 	
-	public List<Integer> slotnum_cars_with_color(String color);
+	public void regnum_cars_with_color(String color);
 	
-	public int slotnum_for_regnum(String registration_num);
+	public void slotnum_cars_with_color(String color);
+	
+	public void slotnum_for_regnum(String registration_num);
 
 }

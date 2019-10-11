@@ -1,10 +1,11 @@
 package com.gojek.parkingLot.constants;
 
 import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class parkingLotMapping {
 
-	public static void createMap(HashMap<String, Integer> map) {
+	public static void createMap(ConcurrentHashMap<String, Integer> map) {
 		map.put(parkingLotConstants.CREATE_PARKING_LOT, 1);
 		map.put(parkingLotConstants.LEAVE_SLOT, 1);
 		map.put(parkingLotConstants.PARK_VECHILE, 2);

@@ -15,14 +15,12 @@ public class parkingLotOperationImpl implements parkingLotOperations {
 	}
 
 	@Override
-	public String createParkingLot(int size, int levels) {
-		return null;
+	public void createParkingLot(int size, int levels) {
 		
-
 	}
 
 	@Override
-	public String park_vehicle(parkingLotVehicle vehicle) {
+	public void park_vehicle(parkingLotVehicle vehicle) {
 		
 		try {
 			int avalaibility = parkingLotQueryOperationImpl.getQuery().getavalaibleslot();
@@ -44,16 +42,16 @@ public class parkingLotOperationImpl implements parkingLotOperations {
 					
 					//inserting in slot reg map
 					parkingLotCache.getSlot_reg_map().put(avalaibility, vehicle.getRegistration_num());
-					return("Allocated slot number: "+avalaibility);
+					System.out.println("Allocated slot number: "+avalaibility);
 				}
 				else {
 					parkingLotCache.getQueue().add(avalaibility);
-					return("Vehicle already Parked");
+					System.out.println("Vehicle already Parked");
 				}
 					
 				
 			} else
-				return("Sorry, parking lot is full");
+				System.out.println("Sorry, parking lot is full");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			throw new commandExecutionFailed("Parking of Vehicle Failed");
@@ -62,7 +60,7 @@ public class parkingLotOperationImpl implements parkingLotOperations {
 	}
 
 	@Override
-	public String leaveParkingLot(int slot) {
+	public void leaveParkingLot(int slot) {
 		try {
 			// TODO Auto-generated method stub
 			if(slot>=1 && slot<=parkingLotCache.getParkingLotSize().get() && (parkingLotCache.getSlot_reg_map().get(slot)!=null)) {
@@ -79,11 +77,11 @@ public class parkingLotOperationImpl implements parkingLotOperations {
 				
 				parkingLotCache.getColor_slotreg_map().get(str[1]).remove(reg+","+slot);
 				
-				return("Slot number "+slot+" is free");
+				System.out.println("Slot number "+slot+" is free");
 				
 			}
 			else {
-				return("No Vehicle is parked at this Slot");
+				System.out.println("No Vehicle is parked at this Slot");
 			}
 		} catch (Exception e) {
 			throw new commandExecutionFailed("ParkingLot Exit Failed");
@@ -92,7 +90,7 @@ public class parkingLotOperationImpl implements parkingLotOperations {
 	}
 
 	@Override
-	public String createParkingLot(int size) {
+	public void createParkingLot(int size) {
 		
 		try {
 			if(parkingLotCache.getParkingLotSize().get()==0) {
@@ -100,10 +98,10 @@ public class parkingLotOperationImpl implements parkingLotOperations {
 				for (int i = 1; i <= size; i++) {
 					parkingLotCache.getQueue().add(i);
 				}
-				return("Created a parking lot with "+parkingLotCache.getQueue().size()+" slots");
+				System.out.println("Created a parking lot with "+parkingLotCache.getQueue().size()+" slots");
 			}
 			else {
-				return("Parking lot already created");
+				System.out.println("Parking lot already created");
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -50,7 +50,7 @@ public class parkingLotQueryOperationImpl implements ParkingLotQueryOperations{
 	}
 
 	@Override
-	public String regnum_cars_with_color(String color) {
+	public void regnum_cars_with_color(String color) {
 		try {
 			// TODO Auto-generated method stub
 			HashSet<String> set = parkingLotCache.getColor_slotreg_map().get(color.toLowerCase());
@@ -66,11 +66,11 @@ public class parkingLotQueryOperationImpl implements ParkingLotQueryOperations{
 					else
 						out.append(itr.next().split(",")[0]+", ");
 				}
-				out.append("\n");
-				return out.toString();
+				
+				System.out.println(out.toString());
 			}
 			else
-				return("Vehicle of color "+color+" is not present");
+				System.out.println("Vehicle of color "+color+" is not present");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			throw new commandExecutionFailed("Retrivel of all Registration numbers of cars with given color Failed");
@@ -80,7 +80,7 @@ public class parkingLotQueryOperationImpl implements ParkingLotQueryOperations{
 	}
 
 	@Override
-	public String slotnum_cars_with_color(String color) {
+	public void slotnum_cars_with_color(String color) {
 		try {
 			// TODO Auto-generated method stub
 			HashSet<String> set = parkingLotCache.getColor_slotreg_map().get(color.toLowerCase());
@@ -96,11 +96,11 @@ public class parkingLotQueryOperationImpl implements ParkingLotQueryOperations{
 					else
 						out.append(itr.next().split(",")[1]+", ");
 				}
-				out.append("\n");
-				return out.toString();
+				
+				System.out.println(out.toString());
 			}
 			else
-				return("Vehicle of color "+color+" is not present");
+				System.out.println("Vehicle of color "+color+" is not present");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			throw new commandExecutionFailed("Retrivel of all slots with given color Failed");
@@ -110,13 +110,13 @@ public class parkingLotQueryOperationImpl implements ParkingLotQueryOperations{
 	}
 
 	@Override
-	public String slotnum_for_regnum(String registration_num) {
+	public void slotnum_for_regnum(String registration_num) {
 		try {
 			// TODO Auto-generated method stub
 			if(parkingLotCache.getRegnum_slot_map().get(registration_num)!=null)
-			return(parkingLotCache.getRegnum_slot_map().get(registration_num).split(",")[0]);
+				System.out.println(parkingLotCache.getRegnum_slot_map().get(registration_num).split(",")[0]);
 			else
-				return("Not found");
+				System.out.println("Not found");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			throw new commandExecutionFailed("Retrivel of all slot Failed");

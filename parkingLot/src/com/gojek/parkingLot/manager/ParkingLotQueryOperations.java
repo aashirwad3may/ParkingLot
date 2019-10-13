@@ -8,10 +8,10 @@ public interface ParkingLotQueryOperations {
 	
 	public int getavalaibleslot();
 	
-	public void regnum_cars_with_color(String color);
+	public String regnum_cars_with_color(String color);
 	
-	public void slotnum_cars_with_color(String color);
+	public String slotnum_cars_with_color(String color);
 	
-	public void slotnum_for_regnum(String registration_num);
+	public String slotnum_for_regnum(String registration_num);
 
 }

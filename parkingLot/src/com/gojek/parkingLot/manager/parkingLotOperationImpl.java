@@ -3,6 +3,7 @@ package com.gojek.parkingLot.manager;
 import java.util.HashSet;
 
 import com.gojek.parkingLot.exceptions.InvalidCommandException;
+import com.gojek.parkingLot.exceptions.commandExecutionFailed;
 import com.gojek.parkingLot.mem_cache.parkingLotCache;
 
 public class parkingLotOperationImpl implements parkingLotOperations {
@@ -14,13 +15,14 @@ public class parkingLotOperationImpl implements parkingLotOperations {
 	}
 
 	@Override
-	public void createParkingLot(int size, int levels) {
-		// TODO Auto-generated method stub
+	public String createParkingLot(int size, int levels) {
+		return null;
+		
 
 	}
 
 	@Override
-	public void park_vehicle(parkingLotVehicle vehicle) {
+	public String park_vehicle(parkingLotVehicle vehicle) {
 		
 		try {
 			int avalaibility = parkingLotQueryOperationImpl.getQuery().getavalaibleslot();
@@ -42,25 +44,25 @@ public class parkingLotOperationImpl implements parkingLotOperations {
 					
 					//inserting in slot reg map
 					parkingLotCache.getSlot_reg_map().put(avalaibility, vehicle.getRegistration_num());
-					System.out.println("Allocated slot number: "+avalaibility);
+					return("Allocated slot number: "+avalaibility);
 				}
 				else {
 					parkingLotCache.getQueue().add(avalaibility);
-					System.out.println("Vehicle already Parked");
+					return("Vehicle already Parked");
 				}
 					
 				
 			} else
-				System.out.println("Sorry, parking lot is full");
+				return("Sorry, parking lot is full");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println("Parking of Vehicle Failed");
+			throw new commandExecutionFailed("Parking of Vehicle Failed");
 		}
 
 	}
 
 	@Override
-	public void leaveParkingLot(int slot) {
+	public String leaveParkingLot(int slot) {
 		try {
 			// TODO Auto-generated method stub
 			if(slot>=1 && slot<=parkingLotCache.getParkingLotSize().get() && (parkingLotCache.getSlot_reg_map().get(slot)!=null)) {
@@ -77,26 +79,38 @@ public class parkingLotOperationImpl implements parkingLotOperations {
 				
 				parkingLotCache.getColor_slotreg_map().get(str[1]).remove(reg+","+slot);
 				
-				System.out.println("Slot number "+slot+" is free");
+				return("Slot number "+slot+" is free");
 				
 			}
 			else {
-				System.out.println("No Vehicle is parked at this Slot");
+				return("No Vehicle is parked at this Slot");
 			}
 		} catch (Exception e) {
-			throw new InvalidCommandException("ParkingLot Exit Failed");
+			throw new commandExecutionFailed("ParkingLot Exit Failed");
 			
 		}
 	}
 
 	@Override
-	public void createParkingLot(int size) {
-		parkingLotCache.getParkingLotSize().set(size);
-		for (int i = 1; i <= size; i++) {
-			parkingLotCache.getQueue().add(i);
+	public String createParkingLot(int size) {
+		
+		try {
+			if(parkingLotCache.getParkingLotSize().get()==0) {
+				parkingLotCache.getParkingLotSize().set(size);
+				for (int i = 1; i <= size; i++) {
+					parkingLotCache.getQueue().add(i);
+				}
+				return("Created a parking lot with "+parkingLotCache.getQueue().size()+" slots");
+			}
+			else {
+				return("Parking lot already created");
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new commandExecutionFailed("Parking lot creation failed");
 		}
-		System.out.println("Created a parking lot with "+parkingLotCache.getQueue().size()+" slots");
-		System.out.println(parkingLotCache.getQueue());
+		
+		
 	}
 
 	public static parkingLotOperationImpl getOperations() {

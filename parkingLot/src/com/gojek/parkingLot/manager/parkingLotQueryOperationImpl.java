@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.gojek.parkingLot.exceptions.InvalidCommandException;
+import com.gojek.parkingLot.exceptions.commandExecutionFailed;
 import com.gojek.parkingLot.mem_cache.parkingLotCache;
 import com.gojek.parkingLot.pojos.statuspojo;
 
@@ -49,57 +50,78 @@ public class parkingLotQueryOperationImpl implements ParkingLotQueryOperations{
 	}
 
 	@Override
-	public void regnum_cars_with_color(String color) {
-		// TODO Auto-generated method stub
-		HashSet<String> set = parkingLotCache.getColor_slotreg_map().get(color.toLowerCase());
-		if(set!=null) {
-			Iterator<String> itr = set.iterator();
-			int size = set.size();
-			int i = 0;
-			while(itr.hasNext()) {
-				i++;
-				if(i==size)
-				System.out.print(itr.next().split(",")[0]);
-				else
-					System.out.print(itr.next().split(",")[0]+", ");
+	public String regnum_cars_with_color(String color) {
+		try {
+			// TODO Auto-generated method stub
+			HashSet<String> set = parkingLotCache.getColor_slotreg_map().get(color.toLowerCase());
+			StringBuilder out = new StringBuilder();
+			if(set!=null) {
+				Iterator<String> itr = set.iterator();
+				int size = set.size();
+				int i = 0;
+				while(itr.hasNext()) {
+					i++;
+					if(i==size)
+					out.append(itr.next().split(",")[0]);
+					else
+						out.append(itr.next().split(",")[0]+", ");
+				}
+				out.append("\n");
+				return out.toString();
 			}
-			System.out.println();
+			else
+				return("Vehicle of color "+color+" is not present");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new commandExecutionFailed("Retrivel of all Registration numbers of cars with given color Failed");
 		}
-		else
-			System.out.println("Vehicle of color "+color+" is not present");
 		
 		
 	}
 
 	@Override
-	public void slotnum_cars_with_color(String color) {
-		// TODO Auto-generated method stub
-		HashSet<String> set = parkingLotCache.getColor_slotreg_map().get(color.toLowerCase());
-		if(set!=null) {
-			Iterator<String> itr = set.iterator();
-			int size = set.size();
-			int i = 0;
-			while(itr.hasNext()) {
-				i++;
-				if(i==size)
-				System.out.print(itr.next().split(",")[1]);
-				else
-					System.out.print(itr.next().split(",")[1]+", ");
+	public String slotnum_cars_with_color(String color) {
+		try {
+			// TODO Auto-generated method stub
+			HashSet<String> set = parkingLotCache.getColor_slotreg_map().get(color.toLowerCase());
+			StringBuilder out = new StringBuilder();
+			if(set!=null) {
+				Iterator<String> itr = set.iterator();
+				int size = set.size();
+				int i = 0;
+				while(itr.hasNext()) {
+					i++;
+					if(i==size)
+					out.append(itr.next().split(",")[1]);
+					else
+						out.append(itr.next().split(",")[1]+", ");
+				}
+				out.append("\n");
+				return out.toString();
 			}
-			System.out.println();
+			else
+				return("Vehicle of color "+color+" is not present");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new commandExecutionFailed("Retrivel of all slots with given color Failed");
+
 		}
-		else
-			System.out.println("Vehicle of color "+color+" is not present");
 		
 	}
 
 	@Override
-	public void slotnum_for_regnum(String registration_num) {
-		// TODO Auto-generated method stub
-		if(parkingLotCache.getRegnum_slot_map().get(registration_num)!=null)
-		System.out.println(parkingLotCache.getRegnum_slot_map().get(registration_num).split(",")[0]);
-		else
-			System.out.println("Not found");
+	public String slotnum_for_regnum(String registration_num) {
+		try {
+			// TODO Auto-generated method stub
+			if(parkingLotCache.getRegnum_slot_map().get(registration_num)!=null)
+			return(parkingLotCache.getRegnum_slot_map().get(registration_num).split(",")[0]);
+			else
+				return("Not found");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new commandExecutionFailed("Retrivel of all slot Failed");
+
+		}
 	}
 
 	@Override

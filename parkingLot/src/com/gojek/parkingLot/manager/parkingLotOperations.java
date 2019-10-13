@@ -2,14 +2,14 @@ package com.gojek.parkingLot.manager;
 
 public interface parkingLotOperations {
 	
-	public void createParkingLot(int size);
+	public String createParkingLot(int size);
 	
 	//For multilevel parkingLot
-	public void createParkingLot(int size,int levels);
+	public String createParkingLot(int size,int levels);
 	
-	public void park_vehicle(parkingLotVehicle vehicle);
+	public String park_vehicle(parkingLotVehicle vehicle);
 	
-	public void leaveParkingLot(int slot);
+	public String leaveParkingLot(int slot);
 	
 
 }

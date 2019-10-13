@@ -42,7 +42,7 @@ public class parkingLotOperationImpl implements parkingLotOperations {
 					
 					//inserting in slot reg map
 					parkingLotCache.getSlot_reg_map().put(avalaibility, vehicle.getRegistration_num());
-					System.out.println("Allocated slot number "+avalaibility);
+					System.out.println("Allocated slot number: "+avalaibility);
 				}
 				else {
 					parkingLotCache.getQueue().add(avalaibility);
@@ -51,7 +51,7 @@ public class parkingLotOperationImpl implements parkingLotOperations {
 					
 				
 			} else
-				System.out.println("Sorry,Parking Lot Is Full");
+				System.out.println("Sorry, parking lot is full");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println("Parking of Vehicle Failed");
@@ -95,7 +95,7 @@ public class parkingLotOperationImpl implements parkingLotOperations {
 		for (int i = 1; i <= size; i++) {
 			parkingLotCache.getQueue().add(i);
 		}
-		System.out.println("Created Parking Lot with "+parkingLotCache.getQueue().size()+" size");
+		System.out.println("Created a parking lot with "+parkingLotCache.getQueue().size()+" slots");
 		System.out.println(parkingLotCache.getQueue());
 	}
 

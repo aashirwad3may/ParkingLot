@@ -99,7 +99,7 @@ public class parkingLotQueryOperationImpl implements ParkingLotQueryOperations{
 		if(parkingLotCache.getRegnum_slot_map().get(registration_num)!=null)
 		System.out.println(parkingLotCache.getRegnum_slot_map().get(registration_num).split(",")[0]);
 		else
-			System.out.println("Invalid Registration Number");
+			System.out.println("Not found");
 	}
 
 	@Override

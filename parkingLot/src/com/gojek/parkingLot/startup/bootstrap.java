@@ -49,7 +49,7 @@ public class bootstrap {
 			
 			try {
 
-				BufferedReader br = new BufferedReader(new FileReader("./src/parkingLot.txt")) ;
+				BufferedReader br = new BufferedReader(new FileReader(args[0])) ;
 				    String line;
 				    while ((line = br.readLine()) != null) {
 				    	try {

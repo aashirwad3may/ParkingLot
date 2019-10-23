@@ -1,6 +1,6 @@
 package com.gojek.parkingLot.constants;
 
-public class parkingLotConstants {
+public class ParkingLotConstants {
 
 	public static final String CREATE_PARKING_LOT = "create_parking_lot";
 	public static final String PARK_VECHILE = "park";

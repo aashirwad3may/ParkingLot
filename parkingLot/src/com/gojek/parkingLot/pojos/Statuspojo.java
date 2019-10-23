@@ -1,6 +1,6 @@
 package com.gojek.parkingLot.pojos;
 
-public class statuspojo implements Comparable<statuspojo>{
+public class Statuspojo implements Comparable<Statuspojo>{
 
 	private String reg_num;
 	private int slot_num;
@@ -44,7 +44,7 @@ public class statuspojo implements Comparable<statuspojo>{
 
 
 	@Override
-	public int compareTo(statuspojo o) {	
+	public int compareTo(Statuspojo o) {	
 		return this.slot_num-o.slot_num;
 	}
 

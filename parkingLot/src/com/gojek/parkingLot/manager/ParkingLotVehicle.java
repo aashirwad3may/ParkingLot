@@ -1,6 +1,6 @@
 package com.gojek.parkingLot.manager;
 
-public abstract class parkingLotVehicle {
+public abstract class ParkingLotVehicle {
 
 	private String registration_num;
 	private String color;

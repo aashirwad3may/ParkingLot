@@ -1,7 +1,7 @@
 package com.gojek.parkingLot.pojos;
 
-import com.gojek.parkingLot.manager.parkingLotVehicle;
+import com.gojek.parkingLot.manager.ParkingLotVehicle;
 
-public class Car extends parkingLotVehicle{
+public class Car extends ParkingLotVehicle{
 	
 }

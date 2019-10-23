@@ -7,9 +7,9 @@ import java.util.PriorityQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import com.gojek.parkingLot.pojos.statuspojo;
+import com.gojek.parkingLot.pojos.Statuspojo;
 
-public class parkingLotCache {
+public class ParkingLotCache {
 
 	private static ConcurrentHashMap<String, Integer> constants_mapping_map = new ConcurrentHashMap<String, Integer>();
 
@@ -23,7 +23,7 @@ public class parkingLotCache {
 
 	private static AtomicInteger parkingLotSize = new AtomicInteger();
 
-	private static ArrayList<statuspojo> status = new ArrayList<statuspojo>();
+	private static ArrayList<Statuspojo> status = new ArrayList<Statuspojo>();
 
 	public static AtomicInteger getParkingLotSize() {
 		return parkingLotSize;
@@ -49,8 +49,14 @@ public class parkingLotCache {
 		return slot_reg_map;
 	}
 
-	public static ArrayList<statuspojo> getStatus() {
+	public static ArrayList<Statuspojo> getStatus() {
 		return status;
+	}
+	public static void unittestclearcache() {
+		constants_mapping_map.clear();
+		regnum_slot_map.clear();
+		color_slotreg_map.clear();
+		slot_reg_map.clear();
 	}
 
 }
